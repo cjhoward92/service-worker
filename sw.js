@@ -2,6 +2,8 @@ const CACHE_NAME = 'service_worker_cache_test';
 const urlsToCache = [
   '/index.html',
   '/install.js',
+];
+const thirdPartyUrls = [
   'https://fonts.google.com/?selection.family=Roboto',
 ];
 
@@ -10,7 +12,10 @@ self.addEventListener('install', (event) => {
 
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => {
     console.log('Opened cache');
-    return cache.addAll(urlsToCache);
+
+    const allUrls = urlsToCache.map(u => new Request(u))
+      .concat(thirdPartyUrls.map(u => new Request(u, { mode: 'no-cors' })));
+    return cache.addAll(allUrls);
   }));
 });
 
