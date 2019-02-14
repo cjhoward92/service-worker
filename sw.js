@@ -10,8 +10,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => {
     console.log('Opened cache');
 
-    const allUrls = urlsToCache.map(u => new Request(u))
-      .concat(thirdPartyUrls.map(u => new Request(u, { mode: 'no-cors' })));
+    const allUrls = urlsToCache.map(u => new Request(u));
     return cache.addAll(allUrls);
   }));
 });
