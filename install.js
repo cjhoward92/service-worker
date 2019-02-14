@@ -12,7 +12,7 @@ if ('serviceWorker' in navigator) {
 
 setTimeout(() => {
   console.log('Starting image fetch');
-  fetch('/Untitled.png', {
+  fetch('./Untitled.png', {
     method: 'GET'
   }).then(response => {
     return response.blob();
