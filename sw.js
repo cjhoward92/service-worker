@@ -1,7 +1,7 @@
 const CACHE_NAME = 'service_worker_cache_test';
 const urlsToCache = [
-  '/index.html',
-  '/install.js',
+  './index.html',
+  './install.js',
 ];
 
 self.addEventListener('install', (event) => {
@@ -17,7 +17,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   console.log(`We fetched ${event}`);
-  console.log(event.request.url);
+  console.log(event.request);
   event.respondWith(caches.match(event.request)
     .then((response) => {
       if (response) {
