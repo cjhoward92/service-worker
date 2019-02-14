@@ -12,10 +12,9 @@ self.addEventListener('install', (event) => {
 
     const allUrls = urlsToCache.map(u => new Request(u));
     return cache.addAll(allUrls);
-  }))
-  .catch((err) => {
+  }).catch((err) => {
     console.error('Error in service worker install', err.message);
-  });
+  }));
 });
 
 self.addEventListener('fetch', (event) => {
@@ -27,8 +26,8 @@ self.addEventListener('fetch', (event) => {
         return response;
       }
       return fetch(event.request);
-    }))
+    })
     .catch(err => {
       console.error('Error in service worker fetch', err.message);
-    });
+    }));
 });
