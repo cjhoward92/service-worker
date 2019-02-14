@@ -3,9 +3,6 @@ const urlsToCache = [
   '/index.html',
   '/install.js',
 ];
-const thirdPartyUrls = [
-  'https://fonts.google.com/?selection.family=Roboto',
-];
 
 self.addEventListener('install', (event) => {
   console.log('installed');
@@ -20,6 +17,8 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  console.log(`We fetched ${event}`);
+  console.log(event.Request.url);
   event.respondWith(caches.match(event.request)
     .then((response) => {
       if (response) {
